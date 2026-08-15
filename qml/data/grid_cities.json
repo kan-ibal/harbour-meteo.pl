@@ -1,0 +1,22 @@
+[
+{"name": "Oslo", "row": 185, "col": 101},
+{"name": "Helsinki", "row": 185, "col": 297},
+{"name": "Sztokholm", "row": 213, "col": 206},
+{"name": "Tallin", "row": 199, "col": 297},
+{"name": "Ryga", "row": 276, "col": 290},
+{"name": "Kopenhaga", "row": 304, "col": 115},
+{"name": "Wilno", "row": 332, "col": 318},
+{"name": "Mińsk", "row": 353, "col": 353},
+{"name": "Berlin", "row": 395, "col": 122},
+{"name": "Kijów", "row": 437, "col": 416},
+{"name": "Praga", "row": 458, "col": 136},
+{"name": "Wiedeń", "row": 514, "col": 164},
+{"name": "Bratysława", "row": 521, "col": 178},
+{"name": "Liechtenstein", "row": 535, "col": 31},
+{"name": "Budapeszt", "row": 535, "col": 213},
+{"name": "Kiszyniów", "row": 542, "col": 402},
+{"name": "Lublana", "row": 570, "col": 129},
+{"name": "Zagrzeb", "row": 584, "col": 157},
+{"name": "Wenecja", "row": 584, "col": 80},
+{"name": "Milan", "row": 584, "col": 24}
+]
