@@ -25,15 +25,15 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: "Wyszukiwarka"
-                description: "Baza miejscowości old.meteo.pl"
+                title: tr("Wyszukiwarka")
+                description: tr("Baza miejscowości old.meteo.pl")
             }
 
             // Standard Silica Search input
             SearchField {
                 id: searchField
                 width: parent.width
-                placeholderText: "Wpisz np. Hel, Zakopane, Poznań..."
+                placeholderText: tr("Wpisz np. Hel, Zakopane, Poznań...")
                 EnterKey.onClicked: {
                     triggerSearch();
                 }
@@ -44,7 +44,7 @@ Page {
             }
 
             Button {
-                text: "Szukaj"
+                text: tr("Szukaj")
                 anchors.horizontalCenter: parent.horizontalCenter
                 enabled: searchQuery.trim() !== ""
                 onClicked: triggerSearch()
@@ -59,7 +59,7 @@ Page {
 
             // Results Section Header
             SectionHeader {
-                text: "Wyniki wyszukiwania (" + searchResults.length + ")"
+                text: (currentLanguage === "pl" ? "Wyniki wyszukiwania (" : "Search results (") + searchResults.length + ")"
                 visible: searchResults.length > 0
             }
 
@@ -88,8 +88,8 @@ Page {
                                 width: parent.width
                             }
                             Label {
-                                text: "Siatka UM: R:" + modelData.row + " C:" + modelData.col +
-                                      (modelData.county && modelData.county !== "none" ? " • pow. " + modelData.county : "")
+                                text: (currentLanguage === "pl" ? ("Siatka UM: R:" + modelData.row + " C:" + modelData.col) : ("UM Grid: R:" + modelData.row + " C:" + modelData.col)) +
+                                      (modelData.county && modelData.county !== "none" ? ((currentLanguage === "pl" ? " • pow. " : " • county: ") + modelData.county) : "")
                                 font.pixelSize: Theme.fontSizeTiny
                                 color: Theme.secondaryColor
                                 elide: Text.ElideRight
@@ -108,7 +108,7 @@ Page {
 
             // Favorites section
             SectionHeader {
-                text: "Ulubione Miejsca"
+                text: tr("Ulubione Miejsca")
             }
 
             Column {
@@ -135,8 +135,8 @@ Page {
                                 width: parent.width
                             }
                             Label {
-                                text: "Siatka UM: R:" + modelData.row + " C:" + modelData.col +
-                                      (modelData.county && modelData.county !== "none" ? " • pow. " + modelData.county : "")
+                                text: (currentLanguage === "pl" ? ("Siatka UM: R:" + modelData.row + " C:" + modelData.col) : ("UM Grid: R:" + modelData.row + " C:" + modelData.col)) +
+                                      (modelData.county && modelData.county !== "none" ? ((currentLanguage === "pl" ? " • pow. " : " • county: ") + modelData.county) : "")
                                 font.pixelSize: Theme.fontSizeTiny
                                 color: Theme.secondaryColor
                                 elide: Text.ElideRight
@@ -163,7 +163,7 @@ Page {
             }
 
             Label {
-                text: "Brak ulubionych miast. Dodaj je podczas przeglądania meteogramu."
+                text: tr("Brak ulubionych miast. Dodaj je podczas przeglądania meteogramu.")
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.secondaryColor

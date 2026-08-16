@@ -200,10 +200,11 @@ class MeteogramFetcher:
             print(f"Failed to scrape coordinates for ID {city_id}: {e}")
         return None, None
 
-    def fetch_mgram_image(self, city_id: int, row: int, col: int, cache_dir: str, force_refresh: bool = False) -> dict:
+    def fetch_mgram_image(self, city_id: int, row: int, col: int, cache_dir: str, force_refresh: bool = False, lang: str = "pl") -> dict:
         """
         Loads the meteogram image, caching it inside local storage.
         Returns a dict containing filePath, isCached, fetchedAt, and error.
+        Supports language selection (lang='pl' or lang='en').
         """
         # Coordinate resolution fallback
         if not row or not col:
@@ -213,35 +214,52 @@ class MeteogramFetcher:
         if not row or not col:
             return {"error": "Brak współrzędnych siatki."}
             
+        # Normalize language to 'pl' or 'en'
+        lang_code = "en" if str(lang).lower().startswith("en") else "pl"
+
         fdate = self.get_latest_fdate()
-        file_name = f"mgram_r{row}_c{col}_{fdate}.png"
+        file_name = f"mgram_r{row}_c{col}_{fdate}_{lang_code}.png"
+        legacy_file_name = f"mgram_r{row}_c{col}_{fdate}.png"
         
         # Ensure cache directory exists
         os.makedirs(cache_dir, exist_ok=True)
         file_path = os.path.join(cache_dir, file_name)
+        legacy_file_path = os.path.join(cache_dir, legacy_file_name)
         
         # Return immediately if file is already in offline cache and not force refreshing
-        if not force_refresh and os.path.exists(file_path):
-            return {
-                "filePath": file_path,
-                "isCached": True,
-                "fetchedAt": int(os.path.getmtime(file_path)),
-                "size": f"{os.path.getsize(file_path) / 1024:.1f} KB",
-                "row": row,
-                "col": col
-            }
+        if not force_refresh:
+            if os.path.exists(file_path):
+                return {
+                    "filePath": file_path,
+                    "isCached": True,
+                    "fetchedAt": int(os.path.getmtime(file_path)),
+                    "size": f"{os.path.getsize(file_path) / 1024:.1f} KB",
+                    "row": row,
+                    "col": col,
+                    "lang": lang_code
+                }
+            elif lang_code == "pl" and os.path.exists(legacy_file_path):
+                return {
+                    "filePath": legacy_file_path,
+                    "isCached": True,
+                    "fetchedAt": int(os.path.getmtime(legacy_file_path)),
+                    "size": f"{os.path.getsize(legacy_file_path) / 1024:.1f} KB",
+                    "row": row,
+                    "col": col,
+                    "lang": "pl"
+                }
             
-        # Try retrieving image from old.meteo.pl
-        mgram_url = f"http://www.meteo.pl/um/metco/mgram_pict.php?ntype=0u&fdate={fdate}&row={row}&col={col}&lang=pl"
+        # Try retrieving image from old.meteo.pl with selected language parameter
+        mgram_url = f"http://www.meteo.pl/um/metco/mgram_pict.php?ntype=0u&fdate={fdate}&row={row}&col={col}&lang={lang_code}"
         try:
             req = urllib.request.Request(mgram_url, headers={'User-Agent': 'harbour-meteopl/1.5 SailfishOS'})
             with urllib.request.urlopen(req, timeout=10) as response:
                 img_data = response.read()
                 
-            # Clean old cached files for this city to save storage space
+            # Clean old cached files for this city to save storage space (preserve current date files)
             prefix = f"mgram_r{row}_c{col}_"
             for f in os.listdir(cache_dir):
-                if f.startswith(prefix) and f != file_name:
+                if f.startswith(prefix) and f != file_name and not (f.endswith(f"_{fdate}_pl.png") or f.endswith(f"_{fdate}_en.png")):
                     try:
                         os.remove(os.path.join(cache_dir, f))
                     except Exception:
@@ -257,12 +275,14 @@ class MeteogramFetcher:
                 "fetchedAt": int(os.path.getmtime(file_path)),
                 "size": f"{len(img_data) / 1024:.1f} KB",
                 "row": row,
-                "col": col
+                "col": col,
+                "lang": lang_code
             }
         except Exception as e:
             # Check if we can fall back to any older cached file for this grid point
             prefix = f"mgram_r{row}_c{col}_"
-            old_files = sorted([f for f in os.listdir(cache_dir) if f.startswith(prefix)], reverse=True)
+            lang_files = sorted([f for f in os.listdir(cache_dir) if f.startswith(prefix) and (f.endswith(f"_{lang_code}.png") or (lang_code == "pl" and not f.endswith("_en.png")))], reverse=True)
+            old_files = lang_files if lang_files else sorted([f for f in os.listdir(cache_dir) if f.startswith(prefix)], reverse=True)
             if old_files:
                 fallback_path = os.path.join(cache_dir, old_files[0])
                 return {
@@ -272,6 +292,7 @@ class MeteogramFetcher:
                     "size": f"{os.path.getsize(fallback_path) / 1024:.1f} KB",
                     "row": row,
                     "col": col,
+                    "lang": lang_code,
                     "warning": "Wczytano starszą prognozę z pamięci (brak sieci)."
                 }
             return {"error": f"Nie udało się połączyć z meteo.pl: {str(e)}"}
@@ -291,15 +312,21 @@ class MeteogramFetcher:
                 mtime = os.path.getmtime(fpath)
                 total_bytes += fsize
                 
-                # Extract row/col from filename e.g. mgram_r406_c250_2026071906.png
-                match = re.search(r'mgram_r(\d+)_c(\d+)_(\d+)', f)
-                row, col, fdate = (match.groups() if match else (0, 0, ""))
+                # Extract row/col/fdate/lang from filename e.g. mgram_r406_c250_2026071906_pl.png
+                match = re.search(r'mgram_r(\d+)_c(\d+)_([0-9]{10})(?:_([a-z]{2}))?', f)
+                if match:
+                    row, col, fdate, file_lang = match.groups()
+                else:
+                    row, col, fdate, file_lang = (0, 0, "", "pl")
+                if not file_lang:
+                    file_lang = "pl"
                 
                 cached_files.append({
                     "fileName": f,
                     "row": int(row),
                     "col": int(col),
                     "fdate": fdate,
+                    "lang": file_lang,
                     "size": f"{fsize / 1024:.1f} KB",
                     "fetchedAt": int(mtime)
                 })
@@ -358,8 +385,8 @@ _fetcher = MeteogramFetcher()
 def search(query: str):
     return json.dumps(_fetcher.search_places(query))
 
-def fetch(city_id: int, row: int, col: int, cache_dir: str, force_refresh: bool):
-    return json.dumps(_fetcher.fetch_mgram_image(city_id, row, col, cache_dir, force_refresh))
+def fetch(city_id: int, row: int, col: int, cache_dir: str, force_refresh: bool, lang: str = "pl"):
+    return json.dumps(_fetcher.fetch_mgram_image(city_id, row, col, cache_dir, force_refresh, lang))
 
 def get_cache_info(cache_dir: str):
     return json.dumps(_fetcher.get_cache_info(cache_dir))

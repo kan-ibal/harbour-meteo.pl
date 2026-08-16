@@ -3,12 +3,32 @@ import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.4
 import "pages"
 import "cover"
+import "translations.js" as I18n
 
 ApplicationWindow {
     id: appWindow
     initialPage: Qt.resolvedUrl("pages/WeatherPage.qml")
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
+
+    // Language state: 'pl' (default) or 'en'
+    property string currentLanguage: "pl"
+
+    function tr(text) {
+        return I18n.getTranslation(text, currentLanguage);
+    }
+
+    function toggleLanguage() {
+        currentLanguage = (currentLanguage === "pl") ? "en" : "pl";
+        saveSettings();
+        fetchMeteogram(activeCity, false);
+    }
+
+    function setLanguage(lang) {
+        currentLanguage = (lang === "en") ? "en" : "pl";
+        saveSettings();
+        fetchMeteogram(activeCity, false);
+    }
 
     // Global application properties
     property var activeCity: ({
@@ -20,7 +40,7 @@ ApplicationWindow {
     })
     
     property string meteogramLocalPath: ""
-    property string cacheTimeText: "Brak danych"
+    property string cacheTimeText: tr("Brak danych")
     property string cacheSizeText: ""
     property bool isCachedForecast: false
     property bool isDownloading: false
@@ -45,7 +65,7 @@ ApplicationWindow {
 
         onError: {
             console.log("PyOtherSide error: " + trace);
-            appWindow.activeError = "Błąd silnika Python: " + trace;
+            appWindow.activeError = qsTr("Błąd silnika Python: ") + trace;
         }
 
         onReceived: {
@@ -58,6 +78,9 @@ ApplicationWindow {
             if (resultJson) {
                 try {
                     var settings = JSON.parse(resultJson);
+                    if (settings.language) {
+                        currentLanguage = settings.language;
+                    }
                     if (settings.favoriteCities && Array.isArray(settings.favoriteCities)) {
                         favoriteCities = settings.favoriteCities;
                     }
@@ -79,6 +102,7 @@ ApplicationWindow {
     function saveSettings() {
         var defaultFav = isCityFavorite(activeCity) ? activeCity : (favoriteCities.length > 0 ? favoriteCities[0] : activeCity);
         var data = {
+            "language": currentLanguage,
             "favoriteCities": favoriteCities,
             "activeCity": activeCity,
             "defaultFavoriteCity": defaultFav
@@ -93,7 +117,7 @@ ApplicationWindow {
         isDownloading = true;
         activeError = "";
         
-        py.call('mgram_fetcher.fetch', [city.id || 0, city.row || 0, city.col || 0, cacheDir, forceRefresh], function(resultJson) {
+        py.call('mgram_fetcher.fetch', [city.id || 0, city.row || 0, city.col || 0, cacheDir, forceRefresh, currentLanguage], function(resultJson) {
             isDownloading = false;
             var result = JSON.parse(resultJson);
             if (result.error) {

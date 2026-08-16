@@ -16,8 +16,8 @@ Page {
 
             PageHeader {
                 id: header
-                title: "Legenda Graficzna"
-                description: "Objaśnienia symboli meteogramu"
+                title: tr("Legenda Graficzna")
+                description: tr("Objaśnienia symboli meteogramu")
             }
 
             Flickable {
@@ -31,7 +31,8 @@ Page {
 
                 Image {
                     id: img
-                    source: Qt.resolvedUrl("../data/leg_um_pl_cbase_256.png")
+                    property string legendLang: (typeof currentLanguage !== "undefined" && currentLanguage === "en") ? "en" : "pl"
+                    source: Qt.resolvedUrl("../data/leg_um_" + legendLang + "_cbase_256.png")
                     asynchronous: true
                     fillMode: Image.PreserveAspectFit
                     width: imageFlickable.width * zoomScale
@@ -41,7 +42,7 @@ Page {
 
                     onStatusChanged: {
                         if (status === Image.Error) {
-                            console.log("Błąd ładowania obrazu legendy z ../data/leg_um_pl_cbase_256.png");
+                            console.log("Błąd ładowania obrazu legendy: " + source);
                         }
                     }
                 }

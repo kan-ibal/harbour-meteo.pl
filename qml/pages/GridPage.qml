@@ -34,12 +34,12 @@ Page {
         spacing: Theme.paddingMedium
 
         PageHeader {
-            title: "Siatka Współrzędnych"
-            description: "Ręczny dobór punktu modelu UM"
+            title: tr("Siatka Współrzędnych")
+            description: tr("Ręczny dobór punktu modelu UM")
         }
 
         Label {
-            text: "Wprowadź współrzędne wiersza (X) i kolumny (Y) siatki numerycznej meteo.pl."
+            text: tr("Wprowadź współrzędne wiersza (X) i kolumny (Y) siatki numerycznej meteo.pl.")
             width: parent.width - Theme.paddingLarge * 2
             anchors.horizontalCenter: parent.horizontalCenter
             wrapMode: Text.WordWrap
@@ -50,8 +50,8 @@ Page {
         TextField {
             id: rowInput
             width: parent.width
-            label: "Wiersz (Row)"
-            placeholderText: "np. 406 (Zakres: 100 - 650)"
+            label: tr("Wiersz (Row)")
+            placeholderText: tr("np. 406 (Zakres: 100 - 650)")
             text: activeCity.row.toString()
             inputMethodHints: Qt.ImhDigitsOnly
         }
@@ -59,21 +59,21 @@ Page {
         TextField {
             id: colInput
             width: parent.width
-            label: "Kolumna (Column)"
-            placeholderText: "np. 250 (Zakres: 10 - 500)"
+            label: tr("Kolumna (Column)")
+            placeholderText: tr("np. 250 (Zakres: 10 - 500)")
             text: activeCity.col.toString()
             inputMethodHints: Qt.ImhDigitsOnly
         }
 
         Button {
-            text: "Zastosuj współrzędne"
+            text: tr("Zastosuj współrzędne")
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
                 var r = parseInt(rowInput.text, 10);
                 var c = parseInt(colInput.text, 10);
                 
                 if (!isNaN(r) && !isNaN(c) && r >= 100 && r <= 650 && c >= 10 && c <= 500) {
-                    var resolvedName = "Siatka [" + r + ", " + c + "]";
+                    var resolvedName = (currentLanguage === "pl" ? "Siatka [" : "Grid [") + r + ", " + c + "]";
                     for (var i = 0; i < gridCities.length; i++) {
                         if (parseInt(gridCities[i].row, 10) === r && parseInt(gridCities[i].col, 10) === c) {
                             resolvedName = gridCities[i].name;
@@ -112,7 +112,7 @@ Page {
             spacing: Theme.paddingSmall
 
             SectionHeader {
-                text: "Popularne punkty kontrolne"
+                text: tr("Popularne punkty kontrolne")
             }
 
             Column {
@@ -139,7 +139,7 @@ Page {
                             }
 
                             Label {
-                                text: "Wiersz: " + modelData.row + " Kol: " + modelData.col
+                                text: (currentLanguage === "pl" ? "Wiersz: " : "Row: ") + modelData.row + (currentLanguage === "pl" ? " Kol: " : " Col: ") + modelData.col
                                 color: Theme.secondaryColor
                                 font.pixelSize: Theme.fontSizeTiny
                                 anchors.verticalCenter: parent.verticalCenter

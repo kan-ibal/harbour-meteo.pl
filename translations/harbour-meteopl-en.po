@@ -1,0 +1,338 @@
+# English translation for harbour-meteopl (MeteoPL)
+# Copyright (C) 2026 kan-ibal
+# This file is distributed under the MIT license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: harbour-meteopl 1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-16 07:22+0000\n"
+"PO-Revision-Date: 2026-08-16 07:30+0000\n"
+"Last-Translator: kan-ibal\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: native/qml/cover/CoverPage.qml:31
+#, qt-format
+msgid "R: %1 C: %2"
+msgstr "R: %1 C: %2"
+
+#: native/qml/harbour-meteopl.qml:23
+msgid "Brak danych"
+msgstr "No data"
+
+#: native/qml/harbour-meteopl.qml:48
+msgid "Błąd silnika Python: "
+msgstr "Python engine error: "
+
+#: native/qml/pages/AboutPage.qml:18
+msgid "O Programie"
+msgstr "About"
+
+#: native/qml/pages/AboutPage.qml:19
+msgid "harbour-meteopl client"
+msgstr "harbour-meteopl client"
+
+#: native/qml/pages/AboutPage.qml:43
+msgid ""
+"Natywny klient meteogramów dla systemu Sailfish OS. Pozwala pobierać, "
+"przeglądać i lokalnie zapisywać (cache) prognozy numeryczne ICM UM 4 km z "
+"portalu old.meteo.pl."
+msgstr ""
+"Native meteogram client for Sailfish OS. Allows fetching, viewing, and "
+"locally caching ICM UM 4 km numerical forecasts from the old.meteo.pl portal."
+
+#: native/qml/pages/AboutPage.qml:54
+msgid "Autorzy i Licencja"
+msgstr "Authors & License"
+
+#: native/qml/pages/AboutPage.qml:60
+msgid ""
+"• Inspiracja: J2Enjoyer<br/>• Licencja: MIT<br/>• Meteogramy: <a "
+"href=\"https://old.meteo.pl\">ICM Uniwersytet Warszawski (meteo.pl)</a><br/"
+">• Adaptacja: kan-ibal"
+msgstr ""
+"• Inspiration: J2Enjoyer<br/>• License: MIT<br/>• Meteograms: <a "
+"href=\"https://old.meteo.pl\">ICM University of Warsaw (meteo.pl)</a><br/"
+">• Adaptation: kan-ibal"
+
+#: native/qml/pages/AboutPage.qml:73
+msgid "Zastrzeżenie (Disclaimer)"
+msgstr "Disclaimer"
+
+#: native/qml/pages/AboutPage.qml:79
+msgid ""
+"Prezentowane dane są wynikiem obliczeń numerycznych i mogą odbiegać od "
+"rzeczywistych warunków pogodowych. Autorzy nie biorą odpowiedzialności za "
+"decyzje podjęte na ich podstawie."
+msgstr ""
+"The presented data are the result of numerical computations and may differ "
+"from actual weather conditions. The authors assume no liability for decisions "
+"made based on this forecast."
+
+#: native/qml/pages/CachePage.qml:8
+msgid "Obliczanie..."
+msgstr "Calculating..."
+
+#: native/qml/pages/CachePage.qml:27
+msgid "Menedżer Pamięci"
+msgstr "Cache Manager"
+
+#: native/qml/pages/CachePage.qml:28
+msgid "Zapisane meteogramy offline"
+msgstr "Saved offline meteograms"
+
+#: native/qml/pages/CachePage.qml:41
+msgid "Użycie pamięci cache:"
+msgstr "Cache memory usage:"
+
+#: native/qml/pages/CachePage.qml:62
+msgid "Wyczyść"
+msgstr "Clear"
+
+#: native/qml/pages/CachePage.qml:76
+#, qt-format
+msgid "Zapisane prognozy (%1)"
+msgstr "Saved forecasts (%1)"
+
+#: native/qml/pages/CachePage.qml:95
+#, qt-format
+msgid "Współrzędne: %1 , %2"
+msgstr "Coordinates: %1 , %2"
+
+#: native/qml/pages/CachePage.qml:99
+#, qt-format
+msgid "Model run: %1 | %2"
+msgstr "Model run: %1 | %2"
+
+#: native/qml/pages/CachePage.qml:107
+#, qt-format
+msgid "Współrzędne [%1, %2]"
+msgstr "Coordinates [%1, %2]"
+
+#: native/qml/pages/CachePage.qml:120
+msgid "Brak zapisanych plików."
+msgstr "No saved files."
+
+#: native/qml/pages/GridPage.qml:37
+msgid "Siatka Współrzędnych"
+msgstr "Coordinate Grid"
+
+#: native/qml/pages/GridPage.qml:38
+msgid "Ręczny dobór punktu modelu UM"
+msgstr "Manual selection of UM model point"
+
+#: native/qml/pages/GridPage.qml:42
+msgid ""
+"Wprowadź współrzędne wiersza (X) i kolumny (Y) siatki numerycznej meteo.pl."
+msgstr ""
+"Enter the row (X) and column (Y) coordinates of the meteo.pl numerical grid."
+
+#: native/qml/pages/GridPage.qml:53
+msgid "Wiersz (Row)"
+msgstr "Row"
+
+#: native/qml/pages/GridPage.qml:54
+msgid "np. 406 (Zakres: 100 - 650)"
+msgstr "e.g. 406 (Range: 100 - 650)"
+
+#: native/qml/pages/GridPage.qml:62
+msgid "Kolumna (Column)"
+msgstr "Column"
+
+#: native/qml/pages/GridPage.qml:63
+msgid "np. 250 (Zakres: 10 - 500)"
+msgstr "e.g. 250 (Range: 10 - 500)"
+
+#: native/qml/pages/GridPage.qml:69
+msgid "Zastosuj współrzędne"
+msgstr "Apply coordinates"
+
+#: native/qml/pages/GridPage.qml:76
+#, qt-format
+msgid "Siatka [%1, %2]"
+msgstr "Grid [%1, %2]"
+
+#: native/qml/pages/GridPage.qml:115
+msgid "Popularne punkty kontrolne"
+msgstr "Popular control points"
+
+#: native/qml/pages/GridPage.qml:142
+#, qt-format
+msgid "Wiersz: %1 Kol: %2"
+msgstr "Row: %1 Col: %2"
+
+#: native/qml/pages/GuideImagePage.qml:19
+msgid "Legenda Graficzna"
+msgstr "Graphical Legend"
+
+#: native/qml/pages/GuideImagePage.qml:20
+msgid "Objaśnienia symboli meteogramu"
+msgstr "Explanation of meteogram symbols"
+
+#: native/qml/pages/GuidePage.qml:45 native/qml/pages/WeatherPage.qml:21
+msgid "Legenda"
+msgstr "Legend"
+
+#: native/qml/pages/GuidePage.qml:46
+msgid "Jak czytać meteogramy UM?"
+msgstr "How to read UM meteograms?"
+
+#: native/qml/pages/GuidePage.qml:55
+msgid "1. Oś Pozioma (Czas)"
+msgstr "1. Horizontal Axis (Time)"
+
+#: native/qml/pages/GuidePage.qml:60
+msgid ""
+"Górna i dolna skala pozioma przedstawia czas. Ciągłe pionowe grube linie "
+"oddzielają dni tygodnia, wyznaczając północ (00:00). Czas podany jest w "
+"standardzie zimowym UTC+1 lub letnim UTC+2."
+msgstr ""
+"The top and bottom horizontal scales represent time. Solid thick vertical "
+"lines separate days of the week, marking midnight (00:00). Time is given in "
+"winter UTC+1 or summer UTC+2 standard."
+
+#: native/qml/pages/GuidePage.qml:70
+msgid "2. Temperatura"
+msgstr "2. Temperature"
+
+#: native/qml/pages/GuidePage.qml:75
+msgid ""
+"Wykres na samej górze przedstawia temperaturę. Czerwona linia ciągła to "
+"temperatura rzeczywista powietrza na wys. 2 metrów. Niebieska linia "
+"przerywana to temperatura odczuwalna (uwzględniająca wiatr i wilgoć)."
+msgstr ""
+"The graph at the very top shows temperature. The solid red line is the actual "
+"air temperature at 2 meters height. The dashed blue line is the apparent "
+"temperature (taking into account wind and humidity)."
+
+#: native/qml/pages/GuidePage.qml:85
+msgid "3. Opady i Ciśnienie"
+msgstr "3. Precipitation & Pressure"
+
+#: native/qml/pages/GuidePage.qml:90
+msgid ""
+"Drugi wykres pokazuje pionowe słupki opadów (zielony - deszcz, niebieski - "
+"śnieg, fioletowy - deszcz ze śniegiem) oraz czarną falującą linię ciągłą, "
+"która oznacza ciśnienie atmosferyczne w hPa."
+msgstr ""
+"The second graph shows vertical precipitation bars (green - rain, blue - "
+"snow, purple - sleet) and a continuous undulating black line representing "
+"atmospheric pressure in hPa."
+
+#: native/qml/pages/GuidePage.qml:100
+msgid "4. Wiatr"
+msgstr "4. Wind"
+
+#: native/qml/pages/GuidePage.qml:105
+msgid ""
+"Dolna część meteogramu zawiera średnią prędkość wiatru w m/s (linia ciągła) "
+"oraz maksymalne porywy (linia przerywana). Strzałki na samej górze tego "
+"panelu wskazują kierunek napływu wiatru."
+msgstr ""
+"The lower section contains the average wind speed in m/s (solid line) and "
+"maximum gusts (dashed line). Arrows at the top of this panel indicate the "
+"wind direction."
+
+#: native/qml/pages/GuidePage.qml:115
+msgid "Przesuń w lewo ➔ aby zobaczyć grafikę"
+msgstr "Swipe left ➔ to view graphics"
+
+#: native/qml/pages/SearchPage.qml:28
+msgid "Wyszukiwarka"
+msgstr "Search"
+
+#: native/qml/pages/SearchPage.qml:29
+msgid "Baza miejscowości old.meteo.pl"
+msgstr "old.meteo.pl location database"
+
+#: native/qml/pages/SearchPage.qml:36
+msgid "Wpisz np. Hel, Zakopane, Poznań..."
+msgstr "Type e.g. Hel, Zakopane, Poznan..."
+
+#: native/qml/pages/SearchPage.qml:47
+msgid "Szukaj"
+msgstr "Search"
+
+#: native/qml/pages/SearchPage.qml:62
+#, qt-format
+msgid "Wyniki wyszukiwania (%1)"
+msgstr "Search results (%1)"
+
+#: native/qml/pages/SearchPage.qml:91 native/qml/pages/SearchPage.qml:138
+#, qt-format
+msgid "Siatka UM: R:%1 C:%2"
+msgstr "UM Grid: R:%1 C:%2"
+
+#: native/qml/pages/SearchPage.qml:92 native/qml/pages/SearchPage.qml:139
+msgid " • pow. "
+msgstr " • county: "
+
+#: native/qml/pages/SearchPage.qml:111
+msgid "Ulubione Miejsca"
+msgstr "Favorite Places"
+
+#: native/qml/pages/SearchPage.qml:166
+msgid "Brak ulubionych miast. Dodaj je podczas przeglądania meteogramu."
+msgstr "No favorite locations. Add them while browsing a meteogram."
+
+#: native/qml/pages/WeatherPage.qml:17
+msgid "O programie"
+msgstr "About"
+
+#: native/qml/pages/WeatherPage.qml:25
+msgid "Pamięć podręczna"
+msgstr "Cache"
+
+#: native/qml/pages/WeatherPage.qml:29
+msgid "Współrzędne siatki"
+msgstr "Grid coordinates"
+
+#: native/qml/pages/WeatherPage.qml:33
+msgid "Wyszukaj miejscowość"
+msgstr "Search location"
+
+#: native/qml/pages/WeatherPage.qml:37
+msgid "Usuń z ulubionych"
+msgstr "Remove from favorites"
+
+#: native/qml/pages/WeatherPage.qml:37
+msgid "Oznacz jako ulubione i domyślne"
+msgstr "Mark as favorite and default"
+
+#: native/qml/pages/WeatherPage.qml:41
+msgid "Odśwież prognozę"
+msgstr "Refresh forecast"
+
+#: native/qml/pages/WeatherPage.qml:50
+#, qt-format
+msgid "Wiersz: %1 Kolumna: %2"
+msgstr "Row: %1 Column: %2"
+
+#: native/qml/pages/WeatherPage.qml:50
+msgid "★ Ulubione (Domyślne) • "
+msgstr "★ Favorite (Default) • "
+
+#: native/qml/pages/WeatherPage.qml:65
+msgid "Najnowsza z offline"
+msgstr "Latest from offline"
+
+#: native/qml/pages/WeatherPage.qml:65
+msgid "Pobrana z meteo.pl"
+msgstr "Fetched from meteo.pl"
+
+#: native/qml/pages/WeatherPage.qml:114
+msgid "Nie udało się załadować pobranego meteogramu."
+msgstr "Failed to load the downloaded meteogram."
+
+#: native/qml/pages/WeatherPage.qml:159
+msgid "Pobieranie najnowszego meteogramu..."
+msgstr "Downloading the latest meteogram..."
+
+#: native/qml/pages/WeatherPage.qml:168
+msgid "Spróbuj ponownie"
+msgstr "Try again"

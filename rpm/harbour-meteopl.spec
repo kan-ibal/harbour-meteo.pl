@@ -1,6 +1,6 @@
 Name:       harbour-meteopl
 Summary:    MeteoPL - Sailfish OS Meteo Client
-Version:    1.0
+Version:    1.1
 Release:    0
 Group:      Qt/Qt
 License:    MIT
@@ -24,12 +24,14 @@ Beautiful, native Jolla Sailfish OS client for reading and offline caching of ol
 rm -rf %{buildroot}
 
 mkdir -p %{buildroot}%{_datadir}/%{name}/qml
+mkdir -p %{buildroot}%{_datadir}/%{name}/translations
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
 
 cp -r ./.sfdk/src/qml/* %{buildroot}%{_datadir}/%{name}/qml/
-cp    ./.sfdk/src/%{name}.desktop %{buildroot}%{_datadir}/applications/
-cp    ./.sfdk/src/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps
+cp -r ./.sfdk/src/translations/* %{buildroot}%{_datadir}/%{name}/translations/ || cp -r translations/* %{buildroot}%{_datadir}/%{name}/translations/ || true
+cp    ./.sfdk/src/%{name}.desktop %{buildroot}%{_datadir}/applications/ || cp %{name}.desktop %{buildroot}%{_datadir}/applications/ || true
+cp    ./.sfdk/src/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps || cp %{name}.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps || true
 
 
 desktop-file-install --delete-original       \

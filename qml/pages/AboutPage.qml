@@ -15,8 +15,8 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: "O Programie"
-                description: "harbour-meteopl client"
+                title: tr("O Programie")
+                description: tr("harbour-meteopl client")
             }
 
             Column {
@@ -32,7 +32,7 @@ Page {
                 }
 
                 Label {
-                    text: "MeteoPL v1.0"
+                    text: "MeteoPL v1.1"
                     font.bold: true
                     font.pixelSize: Theme.fontSizeLarge
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -40,8 +40,7 @@ Page {
                 }
 
                 Label {
-                    text: "Natywny klient meteogramów dla systemu Sailfish OS. Pozwala pobierać, przeglądać i lokalnie zapisywać (cache) prognozy numeryczne ICM UM 4
-                    km z portalu old.meteo.pl."
+                    text: tr("Natywny klient meteogramów dla systemu Sailfish OS. Pozwala pobierać, przeglądać i lokalnie zapisywać (cache) prognozy numeryczne ICM UM 4 km z portalu old.meteo.pl.")
                     width: parent.width
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
@@ -52,16 +51,13 @@ Page {
                 Separator { color: Theme.rgba(Theme.primaryColor, 0.1); width: parent.width }
 
                 Label {
-                    text: "Autorzy i Licencja"
+                    text: tr("Autorzy i Licencja")
                     font.bold: true
                     color: Theme.highlightColor
                 }
 
                 Label {
-                    text: "• Inspiracja: J2Enjoyer<br/>" +
-                          "• Licencja: MIT<br/>" +
-                          "• Meteogramy: <a href=\"https://old.meteo.pl\">ICM Uniwersytet Warszawski (meteo.pl)</a><br/>" +
-                          "• Adaptacja: kan-ibal"
+                    text: tr("• Inspiracja: J2Enjoyer<br/>• Licencja: MIT<br/>• Meteogramy: <a href=\"https://old.meteo.pl\">ICM Uniwersytet Warszawski (meteo.pl)</a><br/>• Adaptacja: kan-ibal")
                     textFormat: Text.StyledText
                     linkColor: Theme.highlightColor
                     onLinkActivated: Qt.openUrlExternally(link)
@@ -74,13 +70,13 @@ Page {
                 Separator { color: Theme.rgba(Theme.primaryColor, 0.1); width: parent.width }
 
                 Label {
-                    text: "Zastrzeżenie (Disclaimer)"
+                    text: tr("Zastrzeżenie (Disclaimer)")
                     font.bold: true
                     color: Theme.highlightColor
                 }
 
                 Label {
-                    text: "Prezentowane dane są wynikiem obliczeń numerycznych i mogą odbiegać od rzeczywistych warunków pogodowych. Autorzy nie biorą odpowiedzialności za decyzje podjęte na ich podstawie."
+                    text: tr("Prezentowane dane są wynikiem obliczeń numerycznych i mogą odbiegać od rzeczywistych warunków pogodowych. Autorzy nie biorą odpowiedzialności za decyzje podjęte na ich podstawie.")
                     width: parent.width
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall

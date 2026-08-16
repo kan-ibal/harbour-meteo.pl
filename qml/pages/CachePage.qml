@@ -5,7 +5,7 @@ Page {
     id: cachePage
     allowedOrientations: defaultAllowedOrientations
 
-    property string totalSizeText: "Obliczanie..."
+    property string totalSizeText: tr("Obliczanie...")
     property var cachedFiles: []
 
     onStatusChanged: {
@@ -24,8 +24,8 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: "Menedżer Pamięci"
-                description: "Zapisane meteogramy offline"
+                title: tr("Menedżer Pamięci")
+                description: tr("Zapisane meteogramy offline")
             }
 
             Rectangle {
@@ -38,7 +38,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Label {
-                    text: "Użycie pamięci cache:"
+                    text: tr("Użycie pamięci cache:")
                     anchors.left: parent.left
                     anchors.leftMargin: Theme.paddingLarge
                     anchors.top: parent.top
@@ -59,7 +59,7 @@ Page {
                 }
 
                 Button {
-                    text: "Wyczyść"
+                    text: tr("Wyczyść")
                     anchors.right: parent.right
                     anchors.rightMargin: Theme.paddingLarge
                     anchors.verticalCenter: parent.verticalCenter
@@ -73,7 +73,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Zapisane prognozy (" + cachedFiles.length + ")"
+                text: (currentLanguage === "pl" ? "Zapisane prognozy (" : "Saved forecasts (") + cachedFiles.length + ")"
             }
 
             Column {
@@ -92,7 +92,7 @@ Page {
                             anchors.verticalCenter: parent.verticalCenter
 
                             Label {
-                                text: "Współrzędne: " + modelData.row + " , " + modelData.col
+                                text: (currentLanguage === "pl" ? "Współrzędne: " : "Coordinates: ") + modelData.row + " , " + modelData.col
                                 color: highlighted ? Theme.highlightColor : Theme.primaryColor
                             }
                             Label {
@@ -104,7 +104,7 @@ Page {
 
                         onClicked: {
                             activeCity = {
-                                "name": "Współrzędne [" + modelData.row + ", " + modelData.col + "]",
+                                "name": (currentLanguage === "pl" ? "Współrzędne [" : "Coordinates [") + modelData.row + ", " + modelData.col + "]",
                                 "row": modelData.row,
                                 "col": modelData.col,
                                 "id": 0
@@ -117,7 +117,7 @@ Page {
             }
 
             Label {
-                text: "Brak zapisanych plików."
+                text: tr("Brak zapisanych plików.")
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.secondaryColor
                 anchors.horizontalCenter: parent.horizontalCenter

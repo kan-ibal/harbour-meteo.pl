@@ -14,31 +14,35 @@ Page {
         // Native Jolla Silica Pulley Menu
         PullDownMenu {
             MenuItem {
-                text: "O programie"
+                text: tr("O programie")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                text: "Legenda"
+                text: tr("Legenda")
                 onClicked: pageStack.push(Qt.resolvedUrl("GuidePage.qml"))
             }
             MenuItem {
-                text: "Pamięć podręczna"
+                text: tr("Pamięć podręczna")
                 onClicked: pageStack.push(Qt.resolvedUrl("CachePage.qml"))
             }
             MenuItem {
-                text: "Współrzędne siatki"
+                text: tr("Współrzędne siatki")
                 onClicked: pageStack.push(Qt.resolvedUrl("GridPage.qml"))
             }
             MenuItem {
-                text: "Wyszukaj miejscowość"
+                text: tr("Wyszukaj miejscowość")
                 onClicked: pageStack.push(Qt.resolvedUrl("SearchPage.qml"))
             }
             MenuItem {
-                text: isCityFavorite(activeCity) ? "Usuń z ulubionych" : "Oznacz jako ulubione i domyślne"
+                text: currentLanguage === "pl" ? "Język: English" : "Language: Polski"
+                onClicked: toggleLanguage()
+            }
+            MenuItem {
+                text: isCityFavorite(activeCity) ? tr("Usuń z ulubionych") : tr("Oznacz jako ulubione i domyślne")
                 onClicked: toggleFavorite(activeCity)
             }
             MenuItem {
-                text: "Odśwież prognozę"
+                text: tr("Odśwież prognozę")
                 onClicked: fetchMeteogram(activeCity, true)
             }
         }
@@ -47,8 +51,7 @@ Page {
         PageHeader {
             id: header
             title: activeCity.name
-            description:"Wiersz: " + activeCity.row + " Kolumna: " + activeCity.col +  (isCityFavorite(activeCity) ? "\n
-            ★ Ulubione (Domyślne) • " : "")
+            description: (currentLanguage === "pl" ? ("Wiersz: " + activeCity.row + " Kolumna: " + activeCity.col) : ("Row: " + activeCity.row + " Column: " + activeCity.col)) + (isCityFavorite(activeCity) ? ("\n" + tr("★ Ulubione (Domyślne) • ")) : "")
         }
 
        // Main status banner
@@ -63,7 +66,7 @@ Page {
                 anchors.left: parent.left
                 anchors.leftMargin: Theme.horizontalPageMargin
                 anchors.verticalCenter: parent.verticalCenter
-                text: isCachedForecast ? "Najnowsza z offline" : "Pobrana z meteo.pl"
+                text: isCachedForecast ? tr("Najnowsza z offline") : tr("Pobrana z meteo.pl")
                 font.pixelSize: Theme.fontSizeTiny
                 color: Theme.secondaryColor
             }
@@ -112,7 +115,7 @@ Page {
 
                 onStatusChanged: {
                     if (status === Image.Error) {
-                        activeError = "Nie udało się załadować pobranego meteogramu.";
+                        activeError = tr("Nie udało się załadować pobranego meteogramu.");
                     }
                 }
             }
@@ -157,7 +160,7 @@ Page {
                 }
 
                 Label {
-                    text: isDownloading ? "Pobieranie najnowszego meteogramu..." : activeError
+                    text: isDownloading ? tr("Pobieranie najnowszego meteogramu...") : activeError
                     width: parent.width
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
@@ -166,7 +169,7 @@ Page {
                 }
 
                 Button {
-                    text: "Spróbuj ponownie"
+                    text: tr("Spróbuj ponownie")
                     anchors.horizontalCenter: parent.horizontalCenter
                     visible: activeError !== ""
                     onClicked: {

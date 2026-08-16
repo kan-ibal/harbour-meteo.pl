@@ -28,7 +28,7 @@ CoverBackground {
         }
 
         Label {
-            text: "R: " + activeCity.row + " C: " + activeCity.col
+            text: qsTr("R: %1 C: %2").arg(activeCity.row).arg(activeCity.col)
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.secondaryColor
             font.family: "Monospace"

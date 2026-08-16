@@ -42,8 +42,8 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: "Legenda"
-                description: "Jak czytać meteogramy UM?"
+                title: tr("Legenda")
+                description: tr("Jak czytać meteogramy UM?")
             }
 
             Column {
@@ -52,12 +52,12 @@ Page {
                 spacing: Theme.paddingMedium
 
                 Label {
-                    text: "1. Oś Pozioma (Czas)"
+                    text: tr("1. Oś Pozioma (Czas)")
                     font.bold: true
                     color: Theme.highlightColor
                 }
                 Label {
-                    text: "Górna i dolna skala pozioma przedstawia czas. Ciągłe pionowe grube linie oddzielają dni tygodnia, wyznaczając północ (00:00). Czas podany jest w standardzie zimowym UTC+1 lub letnim UTC+2."
+                    text: tr("Górna i dolna skala pozioma przedstawia czas. Ciągłe pionowe grube linie oddzielają dni tygodnia, wyznaczając północ (00:00). Czas podany jest w standardzie zimowym UTC+1 lub letnim UTC+2.")
                     width: parent.width
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
@@ -67,12 +67,12 @@ Page {
                 Separator { color: Theme.rgba(Theme.primaryColor, 0.1); width: parent.width }
 
                 Label {
-                    text: "2. Temperatura"
+                    text: tr("2. Temperatura")
                     font.bold: true
                     color: Theme.highlightColor
                 }
                 Label {
-                    text: "Wykres na samej górze przedstawia temperaturę. Czerwona linia ciągła to temperatura rzeczywista powietrza na wys. 2 metrów. Niebieska linia przerywana to temperatura odczuwalna (uwzględniająca wiatr i wilgoć)."
+                    text: tr("Wykres na samej górze przedstawia temperaturę. Czerwona linia ciągła to temperatura rzeczywista powietrza na wys. 2 metrów. Niebieska linia przerywana to temperatura odczuwalna (uwzględniająca wiatr i wilgoć).")
                     width: parent.width
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
@@ -82,12 +82,12 @@ Page {
                 Separator { color: Theme.rgba(Theme.primaryColor, 0.1); width: parent.width }
 
                 Label {
-                    text: "3. Opady i Ciśnienie"
+                    text: tr("3. Opady i Ciśnienie")
                     font.bold: true
                     color: Theme.highlightColor
                 }
                 Label {
-                    text: "Drugi wykres pokazuje pionowe słupki opadów (zielony - deszcz, niebieski - śnieg, fioletowy - deszcz ze śniegiem) oraz czarną falującą linię ciągłą, która oznacza ciśnienie atmosferyczne w hPa."
+                    text: tr("Drugi wykres pokazuje pionowe słupki opadów (zielony - deszcz, niebieski - śnieg, fioletowy - deszcz ze śniegiem) oraz czarną falującą linię ciągłą, która oznacza ciśnienie atmosferyczne w hPa.")
                     width: parent.width
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
@@ -97,12 +97,12 @@ Page {
                 Separator { color: Theme.rgba(Theme.primaryColor, 0.1); width: parent.width }
 
                 Label {
-                    text: "4. Wiatr"
+                    text: tr("4. Wiatr")
                     font.bold: true
                     color: Theme.highlightColor
                 }
                 Label {
-                    text: "Dolna część meteogramu zawiera średnią prędkość wiatru w m/s (linia ciągła) oraz maksymalne porywy (linia przerywana). Strzałki na samej górze tego panelu wskazują kierunek napływu wiatru."
+                    text: tr("Dolna część meteogramu zawiera średnią prędkość wiatru w m/s (linia ciągła) oraz maksymalne porywy (linia przerywana). Strzałki na samej górze tego panelu wskazują kierunek napływu wiatru.")
                     width: parent.width
                     wrapMode: Text.WordWrap
                     font.pixelSize: Theme.fontSizeSmall
@@ -112,7 +112,7 @@ Page {
                 Separator { color: Theme.rgba(Theme.primaryColor, 0.1); width: parent.width }
 
                 Label {
-                    text: "Przesuń w lewo ➔ aby zobaczyć grafikę"
+                    text: tr("Przesuń w lewo ➔ aby zobaczyć grafikę")
                     font.pixelSize: Theme.fontSizeExtraSmall
                     color: Theme.secondaryColor
                     anchors.horizontalCenter: parent.horizontalCenter
